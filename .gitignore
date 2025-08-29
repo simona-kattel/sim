@@ -1,0 +1,16 @@
+# Ignore model weights
+TinyLlama/
+*.bin
+*.pt
+*.safetensors
+*.ckpt
+
+.venv/
+__pycache__/
+*.pyc
+*.pyo
+.DS_Store
+.pyd
+.dll
+.lib
+.env

@@ -1,0 +1,7 @@
+streamlit
+python-dotenv
+cohere
+torch
+transformers
+huggingface_hub
+accelerate
