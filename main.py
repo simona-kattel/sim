@@ -24,9 +24,9 @@ from huggingface_hub import snapshot_download, login
 # =========================
 load_dotenv()
 
-COHERE_API_KEY = os.getenv("COHERE_API_KEY", "")
-HF_TOKEN = os.getenv("HUGGINGFACE_TOKEN")
-HF_HOME = os.getenv("HF_HOME", None)
+COHERE_API_KEY = st.secrets.get("COHERE_API_KEY", os.getenv("COHERE_API_KEY", ""))
+HF_TOKEN = st.secrets.get("HUGGINGFACE_TOKEN", os.getenv("HUGGINGFACE_TOKEN", ""))
+HF_HOME = st.secrets.get("HF_HOME", os.getenv("HF_HOME", None))
 if HF_HOME:
     os.environ["HF_HOME"] = HF_HOME
 
@@ -342,7 +342,7 @@ if prompt:
         if st.session_state.mode == "Online":
             if not COHERE_API_KEY:
                 with st.chat_message("assistant", avatar="🧘"):
-                    st.warning("Set `COHERE_API_KEY` in .env to use Online mode.")
+                    st.warning("Set `COHERE_API_KEY` in Streamlit secrets to use Online mode.")
             else:
                 answer = cohere_generate(
                     api_key=COHERE_API_KEY,
